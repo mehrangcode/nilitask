@@ -3,6 +3,7 @@ import { FormProps } from 'antd/es/form/Form';
 import './auth.css'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import AuthContext from '../../context/AuthContext';
+import LOGO from '../../assets/logo.png'
 type FieldType = {
     userName: string;
     password: string;
@@ -24,10 +25,9 @@ function AuthPage() {
 
     return (
         <div className='authPage'>
-            <div className="heroSection">
-                HEro
-            </div>
+            <div className="heroSection" />
             <div className="authForm">
+                <img src={LOGO} alt="LOGO" className='loginLogo' />
                 <Form
                     form={form}
                     layout='vertical'

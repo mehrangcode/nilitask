@@ -1,10 +1,12 @@
 import create from 'zustand';
 import * as UserStoriesApis from '../apis/userStoriesApis'
+import { ItemType } from './ItemsContext';
 export interface UserStoryType {
     id?: string
     projectId: string
     userId: string
     title: string
+    items?: ItemType[]
     description: string
     businessValue: number
     status: number
