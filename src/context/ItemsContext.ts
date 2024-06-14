@@ -1,36 +1,37 @@
 import create from 'zustand';
-import * as UserStoriesApis from '../apis/userStoriesApis'
-export interface UserStoryType {
+import * as ItemsApis from '../apis/itemsApis'
+export interface ItemType {
     id?: string
-    projectId: string
+    userStoryId: string
     userId: string
     title: string
     description: string
     businessValue: number
+    type: number
     status: number
 }
 interface MessageType {
     id: string
     message: string
 }
-type UserStoriesContextType = {
+type ItemsContextType = {
     loading: boolean
-    data: UserStoryType[]
-    targetItem: UserStoryType
+    data: ItemType[]
+    targetItem: ItemType
     formModalView: boolean
     toggleFormModalView: (open: boolean) => void
-    setData: (data: UserStoryType[]) => void
+    setData: (data: ItemType[]) => void
     getById: (itemId: string) => void
-    createItem: (payload: UserStoryType) => void
-    updateItem: (itemId: string, payload: UserStoryType) => void
+    createItem: (payload: ItemType) => void
+    updateItem: (itemId: string, payload: ItemType) => void
     deleteItem: (itemId: string) => void
     changeItemStatus: (itemId: string, status: number) => void
     saveNewMessage: (itemId: string, payload: MessageType) => void
     updateMessage: (itemId: string, messageId: string, payload: MessageType) => void
     deleteMessage: (itemId: string, messageId: string) => void
-    selectItem: (item: UserStoryType) => void
+    selectItem: (item: ItemType) => void
 }
-const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
+const ItemsContext = create<ItemsContextType>((set, get) => ({
     loading: false,
     data: [],
     targetItem: undefined,
@@ -44,26 +45,26 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     getById: async (itemId: string) => {
         set({ loading: true })
         try {
-            const res = await UserStoriesApis.getById(itemId)
+            const res = await ItemsApis.getById(itemId)
             set({ targetItem: res?.data?.data })
         } catch (error) {
 
         }
         set({ loading: false })
     },
-    createItem: async (payload: UserStoryType) => {
+    createItem: async (payload: ItemType) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.createItem(payload)
+            await ItemsApis.createItem(payload)
         } catch (error) {
 
             set({ loading: false })
         }
     },
-    updateItem: async (itemId: string, payload: UserStoryType) => {
+    updateItem: async (itemId: string, payload: ItemType) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.updateItem(itemId, payload)
+            await ItemsApis.updateItem(itemId, payload)
             set({loading: false})
         } catch (error) {
 
@@ -73,7 +74,7 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     deleteItem: async (itemId: string) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.deleteItem(itemId)
+            await ItemsApis.deleteItem(itemId)
             set({loading: false})
         } catch (error) {
 
@@ -83,7 +84,7 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     changeItemStatus: async (itemId: string, status: number) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.changeItemStatus(itemId, status)
+            await ItemsApis.changeItemStatus(itemId, status)
             get().getById(itemId)
         } catch (error) {
             set({ loading: false })
@@ -92,7 +93,7 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     saveNewMessage: async (itemId: string, payload: MessageType) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.saveNewMasseage(itemId, payload)
+            await ItemsApis.saveNewMasseage(itemId, payload)
             get().getById(itemId)
         } catch (error) {
             set({ loading: false })
@@ -101,7 +102,7 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     updateMessage: async (itemId: string, messageId: string, payload: MessageType) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.updateMasseage(itemId, messageId, payload)
+            await ItemsApis.updateMasseage(itemId, messageId, payload)
             get().getById(itemId)
         } catch (error) {
             set({ loading: false })
@@ -110,15 +111,15 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
     deleteMessage: async (itemId: string, messageId: string) => {
         set({ loading: true })
         try {
-            await UserStoriesApis.deleteMasseage(itemId, messageId)
+            await ItemsApis.deleteMasseage(itemId, messageId)
             get().getById(itemId)
         } catch (error) {
             set({ loading: false })
         }
     },
-    selectItem: (item: UserStoryType) => {
+    selectItem: (item: ItemType) => {
         set({ targetItem: item })
     },
 }));
 
-export default UserStoriesContext;
+export default ItemsContext;

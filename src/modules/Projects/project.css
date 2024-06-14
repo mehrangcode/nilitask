@@ -1,3 +1,20 @@
 .projectTile {
 	margin: 0 1rem;
 }
+
+.userStoriesSection {
+	display: flex;
+	gap: 1rem;
+	margin: 1rem;
+}
+
+.storyCard {
+	border: 1px solid var(--ant-color-border);
+	width: 10rem;
+	height: 5rem;
+	border-radius: 0.5rem;
+}
+
+.storyCardTitle {
+	padding: 0.5rem;
+}

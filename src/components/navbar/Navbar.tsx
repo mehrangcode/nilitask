@@ -1,10 +1,11 @@
 import './navbar.css'
 import LOGO from '../../assets/logo.png'
+import { Link } from 'react-router-dom'
 function Navbar() {
     return (
         <header className="appHeader">
             <div className="appName">
-                <img src={LOGO} alt="NiliTask" className="logo" />
+                <Link to="/"><img src={LOGO} alt="NiliTask" className="logo" /></Link>
                 <h1>NILI TASK</h1>
             </div>
         </header>

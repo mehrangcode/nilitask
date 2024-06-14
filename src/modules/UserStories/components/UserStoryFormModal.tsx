@@ -1,6 +1,7 @@
 import { Form, FormProps, Input, Modal } from 'antd';
 import { useEffect } from 'react';
 import UserStoriesContext from '../../../context/UserStoriesContext';
+import ProjectsContext from '../../../context/ProjectsContext';
 type FieldType = {
     title: string;
     description: string;
@@ -11,6 +12,7 @@ function UserStoryFormModal({
     projectId
 }) {
     const userStoriesContext = UserStoriesContext()
+    const projectsContext = ProjectsContext()
     const [form] = Form.useForm()
     useEffect(() => {
         setTimeout(() => {
@@ -21,14 +23,14 @@ function UserStoryFormModal({
         try {
             if (userStoriesContext.targetItem?.id) {
                 await userStoriesContext.updateItem(userStoriesContext.targetItem.id, {
-                    projectId: +projectId,
+                    projectId,
                     userId: "2",
                     status: 1,
                     ...values
                 })
             } else {
                 await userStoriesContext.createItem({
-                    projectId: +projectId,
+                    projectId,
                     userId: "2",
                     status: 1,
                     ...values
@@ -36,6 +38,7 @@ function UserStoryFormModal({
             }
             userStoriesContext.selectItem(undefined)
             userStoriesContext.toggleFormModalView(false)
+            projectsContext.getById(projectId)
         } catch (error) {
 
         }
@@ -71,7 +74,7 @@ function UserStoryFormModal({
                 </Form.Item>
                 <div className='businessValueInput'>
                     <label htmlFor="businessValue">الویت</label>
-                    <Form.Item name={"businessValue"} rules={[{ required: true }]}>
+                    <Form.Item name={"businessValue"}>
                         <Input style={{width: "3rem"}} />
                     </Form.Item>
                 </div>

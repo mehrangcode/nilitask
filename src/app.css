@@ -21,3 +21,12 @@ body {
     --ant-font-family: 'iranYekan';
     height: 100vh;
 }
+
+h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+.rootElement {
+    margin: 1rem;
+}

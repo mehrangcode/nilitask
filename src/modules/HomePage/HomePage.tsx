@@ -2,7 +2,7 @@ import Projects from "./components/Projects/Projects"
 
 function Home() {
     return (
-        <div>
+        <div className="rootElement">
             <Projects />
         </div>
     )
