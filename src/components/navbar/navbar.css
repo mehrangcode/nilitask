@@ -1,0 +1,18 @@
+.appHeader {
+	height: 60px;
+	border-bottom: 1px solid var(--ant-color-border);
+	margin-bottom: 1rem;
+}
+
+.appName {
+	display: flex;
+	align-items: center;
+}
+
+.appName h1 {
+	font-size: 1rem;
+}
+
+.logo {
+	height: 59px;
+}

@@ -1,0 +1,7 @@
+.businessValueInput {
+	display: flex;
+	gap: 0.5rem;
+}
+.businessValueInput label {
+	margin-top: 0.25rem;
+}
