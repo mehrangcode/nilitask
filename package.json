@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "/nilitask",
   "scripts": {
     "open-browser": "start http://localhost:5173",
     "dev": "npm run open-browser && vite",
