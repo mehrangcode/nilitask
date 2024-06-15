@@ -6,7 +6,7 @@ import faIR from "antd/lib/locale/fa_IR";
 import './app.css'
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/nilitask/'>
       <ConfigProvider
         locale={faIR}
         direction='rtl'
