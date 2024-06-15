@@ -14,7 +14,7 @@
 }
 
 .projectTitle {
-	padding: 0.7rem .5rem;
+	padding: 0.5rem .5rem;
 	margin: 0;
 }
 
@@ -41,7 +41,7 @@
 .anticon.anticon-more.projectBoxMenu {
 	position: absolute;
 	left: 0.5rem;
-	top: 1rem;
+	top: 0.5rem;
 	cursor: pointer;
 }
 
@@ -57,4 +57,14 @@
 
 .payloadAmount {
 	margin: 0 0.25rem;
+}
+
+.newProjectBtn {
+	margin: 1rem;
+	position: fixed;
+	bottom: 2rem;
+	left: 2rem;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
 }

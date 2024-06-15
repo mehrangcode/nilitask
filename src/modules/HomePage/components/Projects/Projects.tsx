@@ -1,4 +1,4 @@
-import { Button } from "antd"
+import { Button, Tooltip } from "antd"
 import { useEffect } from "react"
 import ProjectsContext from "../../../../context/ProjectsContext"
 import ProjectBoxPopOver from "./ProjectBoxPopOver"
@@ -14,7 +14,7 @@ function Projects() {
     return (
         <div>
             <ProjectForm />
-            <Button type="primary" onClick={() => { projectsContext.toggleFormModalView(true) }}> ساخت پروژه جدید</Button>
+            <Tooltip title="ساخت پروژه جدید" placement="right"><Button type="primary" className="newProjectBtn" onClick={() => { projectsContext.toggleFormModalView(true) }}>+</Button></Tooltip>
             <section className="projectsSection">
                 {projectsContext.data.map(project => {
                     return <div className="projectCard">

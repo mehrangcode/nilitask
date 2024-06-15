@@ -35,7 +35,7 @@ function ProjectsPage() {
           <h1 className="projectTile">{projectsContext.targetItem.title}</h1>
           <p>{projectsContext.targetItem.description}</p>
           <div className="projectUsers">
-            <div>کاربران</div>
+            <div style={{padding: "1rem 1.5rem 0"}}>کاربران</div>
             <div className="userSelectWrapper">
               <Select style={{ display: "block", width: "100%" }} value={selectedUser} onChange={setSelectedUser}>
                 {authContext.users.map(u => {

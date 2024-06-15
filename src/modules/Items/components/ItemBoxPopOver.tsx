@@ -12,7 +12,10 @@ function ItemBoxPopOver({
         return <div>
             <p className='projectMenuOption'
                 onClick={() => {
-                    itemsContext.selectItem(item)
+                    itemsContext.selectItem({
+                        ...item,
+                        userId: item?.user?.id
+                    })
                     itemsContext.toggleFormModalView(true)
                 }}
             ><EditOutlined className="actionIcon" /> <span>ویرایش</span></p>
