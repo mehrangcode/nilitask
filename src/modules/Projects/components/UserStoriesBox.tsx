@@ -8,6 +8,7 @@ import ItemFormModal from "../../Items/components/ItemFormModal"
 import UserStoryFormModal from "../../UserStories/components/UserStoryFormModal"
 import '../../UserStories/userStory.css'
 import UserStoryBoxPopOver from "../../UserStories/components/UserStoryBoxPopOver"
+import ItemBoxPopOver from "../../Items/components/ItemBoxPopOver"
 function UserStoriesBox({ projectId }) {
     const userStoriesContext = UserStoriesContext()
     const projectsContext = ProjectsContext()
@@ -50,7 +51,7 @@ function UserStoriesBox({ projectId }) {
     function renderItems(story, status) {
         return story.items?.filter(t => t.status === status).map(task => {
             return <div className="taskCard" draggable="true" onDragStart={(e) => { drag(e, story.id + "-" + task.id) }}>
-                <div className="taskCardTitle">{task.title}</div>
+                <div className="taskCardTitle">{task.title} <ItemBoxPopOver item={task} /> </div>
                 <div className="taskContent">{task.description}</div>
                 <div className="taskFooter">
                     {task.user ? <span><UserOutlined /> <span>{task.user.username}</span></span> : <span />}
