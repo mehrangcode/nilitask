@@ -18,8 +18,8 @@ export async function deleteItem(itemId) {
     return await axios.delete(endPoint + `/${itemId}`)
 }
 export async function joinUser(itemId, userIds) {
-    return await axios.patch(endPoint + `/${itemId}/joinUser`, userIds)
+    return await axios.patch(endPoint + `/${itemId}/joinUser?userIds[0]=${userIds}`,)
 }
 export async function removeUser(itemId, userIds) {
-    return await axios.patch(endPoint + `/${itemId}/removeUser`, userIds)
+    return await axios.patch(endPoint + `/${itemId}/removeUser?userIds[0]=${userIds}`)
 }

@@ -9,6 +9,12 @@ export interface ItemType {
     businessValue: number
     type: number
     status: number
+    discussions?: {
+        id: string,
+        userId: string
+        message: string,
+        createDate: string
+    }[]
 }
 interface MessageType {
     id: string
@@ -65,7 +71,7 @@ const ItemsContext = create<ItemsContextType>((set, get) => ({
         set({ loading: true })
         try {
             await ItemsApis.updateItem(itemId, payload)
-            set({loading: false})
+            set({ loading: false })
         } catch (error) {
 
             set({ loading: false })
@@ -75,7 +81,7 @@ const ItemsContext = create<ItemsContextType>((set, get) => ({
         set({ loading: true })
         try {
             await ItemsApis.deleteItem(itemId)
-            set({loading: false})
+            set({ loading: false })
         } catch (error) {
 
             set({ loading: false })

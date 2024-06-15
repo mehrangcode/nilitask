@@ -19,8 +19,8 @@ type ProjectContextType = {
     createItem: (payload: projectType) => void
     updateItem: (itemId: string, payload: projectType) => void
     deleteItem: (itemId: string) => void
-    joinUser: (itemId: string, userIds: string[]) => void
-    removeUser: (itemId: string, userIds: string[]) => void
+    joinUser: (itemId: string, userIds: string) => void
+    removeUser: (itemId: string, userIds: string) => void
     selectItem: (item: projectType) => void
 }
 const ProjectsContext = create<ProjectContextType>((set, get) => ({
@@ -29,7 +29,7 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
     targetItem: undefined,
     formModalView: false,
     toggleFormModalView: (open: boolean) => {
-        set({formModalView: open})
+        set({ formModalView: open })
     },
     fetchAll: async () => {
         set({ loading: true })
@@ -37,7 +37,7 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
             const res = await projectsApis.getAll()
             set({ data: (res?.data?.data as projectType[])?.reverse() })
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
@@ -48,7 +48,7 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
             const res = await projectsApis.getById(itemId)
             set({ targetItem: res?.data?.data })
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
@@ -58,7 +58,7 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
             await projectsApis.createItem(payload)
             get().fetchAll()
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
@@ -68,7 +68,7 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
             await projectsApis.updateItem(itemId, payload)
             get().fetchAll()
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
@@ -78,27 +78,25 @@ const ProjectsContext = create<ProjectContextType>((set, get) => ({
             await projectsApis.deleteItem(itemId)
             get().fetchAll()
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
-    joinUser: async (itemId: string, userIds: string[]) => {
+    joinUser: async (itemId: string, userIds: string) => {
         set({ loading: true })
         try {
             await projectsApis.joinUser(itemId, userIds)
-            get().fetchAll()
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },
-    removeUser: async (itemId: string, userIds: string[]) => {
+    removeUser: async (itemId: string, userIds: string) => {
         set({ loading: true })
         try {
             await projectsApis.removeUser(itemId, userIds)
-            get().fetchAll()
         } catch (error) {
-            
+
         }
         set({ loading: false })
     },

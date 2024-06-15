@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { login, register } from '../apis/authApis';
+import { fetchAllUsers, login, register } from '../apis/authApis';
 interface userAuthPayload {
     userName: string
     password: string
@@ -7,6 +7,8 @@ interface userAuthPayload {
 type IState = {
     loading: boolean
     isAuth: boolean
+    users: any[]
+    fetchAll: () => void
     setIsAuth: (status: boolean) => void
     userLogin: (payload: userAuthPayload) => void
     userRegister: (payload: userAuthPayload) => void
@@ -14,6 +16,18 @@ type IState = {
 const AuthContext = create<IState>((set, get) => ({
     loading: false,
     isAuth: false,
+    users: [],
+    fetchAll: async () => {
+        set({ loading: true })
+        try {
+            const res = await fetchAllUsers()
+            set({ users: res?.data?.data })
+        } catch (error) {
+
+        }
+        set({ loading: false })
+
+    },
     setIsAuth: (status) => {
         set({ isAuth: status })
     },
@@ -27,7 +41,7 @@ const AuthContext = create<IState>((set, get) => ({
                 window.location.reload()
             }
         } catch (error) {
-            
+
             set({ loading: false })
 
         }
@@ -38,7 +52,7 @@ const AuthContext = create<IState>((set, get) => ({
             await register(payload)
             get().userLogin(payload)
         } catch (error) {
-            
+
             set({ loading: false })
 
         }

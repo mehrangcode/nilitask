@@ -1,7 +1,8 @@
-import { Form, FormProps, Input, Modal } from 'antd';
+import { Col, Form, FormProps, Input, Modal, Row, Select } from 'antd';
 import { useEffect } from 'react';
 import ItemsContext from '../../../context/ItemsContext';
 import ProjectsContext from '../../../context/ProjectsContext';
+import AuthContext from '../../../context/AuthContext';
 type FieldType = {
     title: string;
     description: string;
@@ -14,6 +15,10 @@ function ItemFormModal({
 }) {
     const projectsContext = ProjectsContext()
     const itemsContext = ItemsContext()
+    const authContext = AuthContext()
+    useEffect(() => {
+        authContext.fetchAll()
+    }, [])
     const [form] = Form.useForm()
     useEffect(() => {
         setTimeout(() => {
@@ -69,18 +74,31 @@ function ItemFormModal({
                 onFinish={onFinish}
                 layout="vertical"
             >
+                <Row gutter={16}>
+                    <Col xs={12}>
+                        <Form.Item  label="نوع" name={"type"}>
+                            <Select>
+                                <Select.Option key={1} value={1}>تسک</Select.Option>
+                                <Select.Option key={2} value={2}>خطا</Select.Option>
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                    <Col xs={12}>
+                        <Form.Item label="کاربر مرتبط" name={"userId"}>
+                            <Select>
+                                {authContext.users.map(record => {
+                                    return <Select.Option key={record.id} value={record.id}>{record.username}</Select.Option>
+                                })}
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                </Row>
                 <Form.Item label="عنوان" name={"title"} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item label="توضیحات تکمیلی" name={"description"} rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <div className='businessValueInput'>
-                    <label htmlFor="businessValue">الویت</label>
-                    <Form.Item name={"businessValue"}>
-                        <Input style={{width: "3rem"}} />
-                    </Form.Item>
-                </div>
             </Form>
         </Modal>
     )
