@@ -7,6 +7,7 @@ import UserStoriesContext from "../../../context/UserStoriesContext"
 import ItemFormModal from "../../Items/components/ItemFormModal"
 import UserStoryFormModal from "../../UserStories/components/UserStoryFormModal"
 import '../../UserStories/userStory.css'
+import UserStoryBoxPopOver from "../../UserStories/components/UserStoryBoxPopOver"
 function UserStoriesBox({ projectId }) {
     const userStoriesContext = UserStoriesContext()
     const projectsContext = ProjectsContext()
@@ -82,6 +83,7 @@ function UserStoriesBox({ projectId }) {
                 {userStoriesContext.data.map(story => {
                     return <div className="storyCard content">
                         <div className="storyDetails">
+                            <UserStoryBoxPopOver userStory={story} />
                             <div className="storyCardTitle">{story.title}</div>
                             {/* <div className="storyCardTitle"><Link to={"/userStory/" + story.id}>{story.title}</Link></div> */}
                             <div className="taskContent">{story.description}</div>
