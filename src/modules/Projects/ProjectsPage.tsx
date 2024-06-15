@@ -19,9 +19,13 @@ function ProjectsPage() {
   }
   return (
     <div className="rootElement">
-      <h1 className="projectTile">{projectsContext.targetItem.title}</h1>
-      <p>{projectsContext.targetItem.description}</p>
-      <UserStoriesBox projectId={id} />
+      <div className="pageWrapper">
+        <div className="projectInfo">
+          <h1 className="projectTile">{projectsContext.targetItem.title}</h1>
+          <p>{projectsContext.targetItem.description}</p>
+        </div>
+        <UserStoriesBox projectId={id} />
+      </div>
     </div>
   )
 }

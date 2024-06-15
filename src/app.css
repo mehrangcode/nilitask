@@ -27,6 +27,10 @@ h1, p {
     padding: 0;
 }
 
-.rootElement {
-    margin: 1rem;
+.pageWrapper {
+	display: flex;
+}
+
+.center {
+    text-align: center;
 }

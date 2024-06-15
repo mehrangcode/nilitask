@@ -1,7 +1,7 @@
 import { Form, FormProps, Input, Modal } from 'antd';
 import { useEffect } from 'react';
 import ItemsContext from '../../../context/ItemsContext';
-import UserStoriesContext from '../../../context/UserStoriesContext';
+import ProjectsContext from '../../../context/ProjectsContext';
 type FieldType = {
     title: string;
     description: string;
@@ -10,9 +10,9 @@ type FieldType = {
 };
 
 function ItemFormModal({
-    userStoryId
+    projectId
 }) {
-    const userStoriesContext = UserStoriesContext()
+    const projectsContext = ProjectsContext()
     const itemsContext = ItemsContext()
     const [form] = Form.useForm()
     useEffect(() => {
@@ -24,22 +24,24 @@ function ItemFormModal({
         try {
             if (itemsContext.targetItem?.id) {
                 await itemsContext.updateItem(itemsContext.targetItem.id, {
-                    userStoryId,
-                    userId: "2",
-                    status: 1,
+                    userStoryId: itemsContext.targetItem.userStoryId,
+                    type: itemsContext.targetItem.type,
+                    userId: null,
+                    status: itemsContext.targetItem.status,
                     ...values
                 })
             } else {
                 await itemsContext.createItem({
-                    userStoryId,
-                    userId: "2",
-                    status: 1,
+                    userStoryId: itemsContext.targetItem.userStoryId,
+                    type: itemsContext.targetItem.type,
+                    userId: null,
+                    status: itemsContext.targetItem.status,
                     ...values
                 })
             }
             itemsContext.selectItem(undefined)
             itemsContext.toggleFormModalView(false)
-            userStoriesContext.getById(userStoryId)
+            projectsContext.getById(projectId)
         } catch (error) {
 
         }

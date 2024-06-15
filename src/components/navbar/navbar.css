@@ -1,7 +1,6 @@
 .appHeader {
 	height: 60px;
 	border-bottom: 1px solid var(--ant-color-border);
-	margin-bottom: 1rem;
 }
 
 .appName {
