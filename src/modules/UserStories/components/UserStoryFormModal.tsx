@@ -69,15 +69,9 @@ function UserStoryFormModal({
                 <Form.Item label="عنوان" name={"title"} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="توضیحات تکمیلی" name={"description"} rules={[{ required: true }]}>
+                <Form.Item label="توضیحات تکمیلی" name={"description"}>
                     <Input.TextArea />
                 </Form.Item>
-                <div className='businessValueInput'>
-                    <label htmlFor="businessValue">الویت</label>
-                    <Form.Item name={"businessValue"}>
-                        <Input style={{width: "3rem"}} />
-                    </Form.Item>
-                </div>
             </Form>
         </Modal>
     )

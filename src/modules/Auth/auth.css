@@ -30,3 +30,9 @@
 	margin: 0 auto;
 	margin-top: -59px;
 }
+
+.authInput,
+.authInput input {
+	direction: ltr;
+	text-align: left;
+}

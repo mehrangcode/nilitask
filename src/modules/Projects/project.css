@@ -92,6 +92,7 @@
 	margin: 1.5rem 0.5rem;
 	border-radius: 0.25rem;
 	min-height: 6rem;
+	position: relative;
 }
 
 .taskCardTitle {
@@ -115,6 +116,9 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 0 .5rem;
+	position: absolute;
+	bottom: .25rem;
+	width: 100%;
 }
 
 .msgBox {

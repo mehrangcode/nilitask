@@ -54,7 +54,7 @@ function ProjectForm() {
                 <Form.Item label="عنوان" name={"title"} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="توضیحات تکمیلی" name={"description"} rules={[{ required: true }]}>
+                <Form.Item label="توضیحات تکمیلی" name={"description"}>
                     <Input.TextArea />
                 </Form.Item>
             </Form>

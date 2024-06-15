@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import AuthPage from './modules/Auth/AuthPage';
 import axios from 'axios';
 import ProjectsPage from './modules/Projects/ProjectsPage';
-import UserStoryPage from './modules/UserStories/UserStoryPage';
 
 function Container() {
   const [isAuth, setIsAuth] = useState(false)
@@ -57,7 +56,6 @@ function Container() {
     <div className='container' style={{ background: colorBgContainer }}>
       <Navbar />
       <Routes>
-        <Route path='/userStory/:id' element={<UserStoryPage />} />
         <Route path='/projects/:id' element={<ProjectsPage />} />
         <Route path='/' element={<Home />} />
       </Routes>

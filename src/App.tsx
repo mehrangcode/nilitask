@@ -1,4 +1,4 @@
-import { ConfigProvider, Layout } from 'antd'
+import { ConfigProvider, Layout, theme } from 'antd'
 import { BrowserRouter } from 'react-router-dom'
 import Container from './Container'
 import { Content } from 'antd/es/layout/layout'
@@ -12,7 +12,7 @@ function App() {
         direction='rtl'
         theme={{
           cssVar: true,
-          // algorithm: theme.darkAlgorithm,
+          algorithm: theme.darkAlgorithm,
           token: {
             fontFamily: "iranYekan",
             // Seed Token

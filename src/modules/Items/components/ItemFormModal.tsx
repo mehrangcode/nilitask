@@ -2,7 +2,6 @@ import { Col, Form, FormProps, Input, Modal, Row, Select } from 'antd';
 import { useEffect } from 'react';
 import ItemsContext from '../../../context/ItemsContext';
 import ProjectsContext from '../../../context/ProjectsContext';
-import AuthContext from '../../../context/AuthContext';
 type FieldType = {
     title: string;
     description: string;
@@ -15,10 +14,6 @@ function ItemFormModal({
 }) {
     const projectsContext = ProjectsContext()
     const itemsContext = ItemsContext()
-    const authContext = AuthContext()
-    useEffect(() => {
-        authContext.fetchAll()
-    }, [])
     const [form] = Form.useForm()
     useEffect(() => {
         setTimeout(() => {
@@ -86,7 +81,7 @@ function ItemFormModal({
                     <Col xs={12}>
                         <Form.Item label="کاربر مرتبط" name={"userId"}>
                             <Select>
-                                {authContext.users.map(record => {
+                                {projectsContext.targetItem?.users.map((record: any) => {
                                     return <Select.Option key={record.id} value={record.id}>{record.username}</Select.Option>
                                 })}
                             </Select>
@@ -96,7 +91,7 @@ function ItemFormModal({
                 <Form.Item label="عنوان" name={"title"} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="توضیحات تکمیلی" name={"description"} rules={[{ required: true }]}>
+                <Form.Item label="توضیحات تکمیلی" name={"description"}>
                     <Input.TextArea />
                 </Form.Item>
             </Form>

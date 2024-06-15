@@ -36,10 +36,10 @@ function AuthPage() {
                     autoComplete="off"
                 >
                     <Form.Item name="userName" label="نام کاربری" rules={[{ required: true }]}>
-                        <Input />
+                        <Input className='authInput' />
                     </Form.Item>
                     <Form.Item name="password" label="رمز عبور" rules={[{ required: true }]}>
-                        <Input.Password />
+                        <Input.Password className='authInput' />
                     </Form.Item>
                     <Row gutter={16}>
                         <Col>
