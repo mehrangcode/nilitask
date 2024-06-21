@@ -1,0 +1,152 @@
+.shamsiDatePicker {
+    position: relative;
+    direction: rtl;
+}
+
+.datePickerBox {
+    position: fixed;
+    background: var(--background);
+    border: none;
+    width: 250px;
+    height: 0;
+    z-index: 50;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 300ms;
+}
+
+.datePickerBox.open {
+    height: 305px;
+    border: 1px solid var(--borderColor);
+    box-shadow: 0 2px 8px #666;
+}
+
+.datePickerBox.open.calendarMode {
+	box-shadow: unset;
+}
+
+.datePickerBody {
+    display: grid;
+    grid-template-columns: repeat(7, 30px);
+    grid-template-rows: 21px repeat(6, 30px);
+    grid-row-gap: 0.25rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+}
+
+.datePickerBody .dayName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.datePickerBody .day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    transition: all 500ms;
+    cursor: pointer;
+}
+
+.datePickerBody .day:hover {
+    background: var(--primaryColor);
+    color: var(--primaryFontColor);
+    border-radius: 35px;
+}
+
+.datePickerBody .day.active {
+    border: 1px solid var(--primaryColor);
+    color: var(--primaryColor);
+    border-radius: 35px;
+}
+
+.datePickerBody .day.active:hover {
+    color: var(--primaryFontColor);
+}
+
+.datePickerItemBox.disabled,
+.datePickerBody .day.disable {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.datePickerBody .day.disable:hover {
+    background: unset;
+    color: unset;
+    cursor: default;
+}
+
+.datePickerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    background: var(--primaryColor);
+    color: var(--primaryFontColor);
+}
+
+.datePickerViewBody {
+	font-size: 13px;
+}
+
+.datePickerMonthView {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 1rem;
+    padding: 0 0.25rem;
+}
+
+.datePickerItemBox {
+    padding: 0 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 300ms;
+    color: var(--fontColor);
+}
+
+.datePickerItemBox:hover {
+    background: var(--primaryColor);
+    color: var(--primaryFontColor);
+    transform: scale(1.1);
+}
+
+.datePickerItemBox.active {
+    background: var(--primaryColor);
+    color: var(--primaryFontColor);
+}
+
+.datePickerInput {
+	direction: ltr;
+	text-align: left;
+	padding: 4px 11px;
+	border-radius: 4px;
+    width: 100%;
+}
+
+.navigationIcon {
+	background: var(--primaryFontColor);
+	color: var(--primaryColor);
+	width: 30px;
+	display: inline-flex;
+	justify-content: center;
+	border-radius: 50%;
+	height: 30px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.dateLabel span {
+	cursor: pointer;
+    border-bottom: 4px solid transparent;
+}
+
+.dateLabel span:hover {
+	cursor: pointer;
+    border-bottom: 4px solid var(--primaryFontColor);
+}
+
+.datePickerBox.calendarMode {
+	position: relative;
+	width: 100%;
+}

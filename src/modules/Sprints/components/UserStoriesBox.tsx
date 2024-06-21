@@ -21,7 +21,7 @@ function UserStoriesBox({ projectId }) {
     const itemsContext = ItemsContext()
     useEffect(() => {
         if (projectsContext.targetItem) {
-            userStoriesContext.setData(projectsContext.targetItem.userStories)
+            userStoriesContext.setData(projectsContext.targetItem.sprints)
         }
     }, [projectsContext.targetItem])
     const defaultItemValue = {

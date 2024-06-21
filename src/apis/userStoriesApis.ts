@@ -6,7 +6,7 @@ export async function getById(itemId: string) {
     return await axios.get(endPoint + `/${itemId}`)
 }
 export async function createItem(payload) {
-    return await axios.post(endPoint+ `?projectId=${payload.projectId}`, payload)
+    return await axios.post(endPoint+ `?sprintId=${payload.sprintId}`, payload)
 }
 export async function updateItem(itemId, payload) {
     return await axios.put(endPoint + `/${itemId}`, payload)

@@ -1,12 +1,12 @@
 import create from 'zustand';
-import * as projectsApis from '../apis/projectsApis'
-import { UserStoryType } from './UserStoriesContext';
+import * as projectsApis from '../apis/projectsApis';
+import { SprintType } from './SprintsContext';
 interface projectType {
     id?: string
     title: string
     description: string
     users?: string[]
-    userStories?: UserStoryType[]
+    sprints?: SprintType[]
 }
 type ProjectContextType = {
     loading: boolean

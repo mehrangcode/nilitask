@@ -27,7 +27,7 @@ function Projects() {
                         <ProjectBoxPopOver project={project} />
                         <div className="projctCardInfo">
                             {project.users?.length > 0 && <span><span className="payloadAmount">{project.users?.length}</span><UserOutlined /></span>}
-                            {project.userStories?.length > 0 && <span><span className="payloadAmount">{project.userStories?.length}</span><BookOutlined /></span>}
+                            {project.sprints?.length > 0 && <span><span className="payloadAmount">{project.sprints?.length}</span><BookOutlined /></span>}
                         </div>
                     </div>
                 })}

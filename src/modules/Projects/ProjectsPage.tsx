@@ -1,14 +1,14 @@
+import { CloseCircleOutlined } from "@ant-design/icons"
+import DoDate from "@doolooper/dodate"
+import { Button, Form, Input, Select } from "antd"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import AuthContext from "../../context/AuthContext"
+import ItemsContext from "../../context/ItemsContext"
 import ProjectsContext from "../../context/ProjectsContext"
 import '../UserStories/userStory.css'
-import UserStoriesBox from "./components/UserStoriesBox"
 import './project.css'
-import ItemsContext from "../../context/ItemsContext"
-import { Button, Form, Input, Select } from "antd"
-import DoDate from "@doolooper/dodate"
-import AuthContext from "../../context/AuthContext"
-import { CloseCircleOutlined } from "@ant-design/icons"
+import SprintBox from "./components/SprintBox"
 
 function ProjectsPage() {
   const [selectedUser, setSelectedUser] = useState(undefined)
@@ -98,7 +98,7 @@ function ProjectsPage() {
             </div>
           </div> : null}
         </div>
-        <UserStoriesBox projectId={id} />
+        <SprintBox projectId={id} />
       </div>
     </div>
   )
