@@ -14,11 +14,16 @@ function Projects() {
     return (
         <div>
             <ProjectForm />
-            <Tooltip title="ساخت پروژه جدید" placement="right"><Button type="primary" className="newProjectBtn" onClick={() => { projectsContext.toggleFormModalView(true) }}>+</Button></Tooltip>
+            <Tooltip title="ساخت پروژه جدید" placement="right"><Button type="primary" className="newProjectBtn" onClick={() => {
+                projectsContext.selectItem(null)
+                setTimeout(() => {
+                    projectsContext.toggleFormModalView(true)
+                }, 100);
+            }}>+</Button></Tooltip>
             <section className="projectsSection">
                 {projectsContext.data.map(project => {
                     return <div className="projectCard">
-                        <p className="projectTitle"><Link to={"/projects/"+ project.id}>{project.title}</Link></p>
+                        <p className="projectTitle"><Link to={"/projects/" + project.id}>{project.title}</Link></p>
                         <ProjectBoxPopOver project={project} />
                         <div className="projctCardInfo">
                             {project.users?.length > 0 && <span><span className="payloadAmount">{project.users?.length}</span><UserOutlined /></span>}

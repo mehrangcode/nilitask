@@ -15,7 +15,6 @@ function App() {
           algorithm: theme.darkAlgorithm,
           token: {
             fontFamily: "iranYekan",
-            // Seed Token
             colorPrimary: '#6420AA',
           },
         }}

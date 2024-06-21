@@ -57,7 +57,7 @@
 	align-items: center;
 	flex-direction: column;
 	background: var(--ant-color-primary);
-	color: var(--ant-color-primary-bg);
+	color: #eee;
 	cursor: pointer;
 }
 
@@ -72,7 +72,7 @@
 	width: 1.5rem;
 	height: 1.5rem;
 	background: var(--ant-color-primary);
-	color: var(--ant-color-primary-bg);
+	color: #eee;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -95,9 +95,18 @@
 	position: relative;
 }
 
+.filterMode {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+}
+.filterMode .taskCard {
+	width: 230px;
+}
+
 .taskCardTitle {
 	background: var(--ant-color-primary);
-	color: var(--ant-color-primary-bg);
+	color: #eee;
 	border-bottom: 1px solid;
 	padding: 0.25rem;
 	border-radius: 0.25rem;
@@ -106,6 +115,7 @@
 .taskContent {
 	padding: 0.5rem;
 	font-size: 12px;
+	margin-bottom: 1.5rem;
 }
 
 .storyCard.storyBox.header>div {
@@ -119,6 +129,7 @@
 	position: absolute;
 	bottom: .25rem;
 	width: 100%;
+	border-top: 2px solid var(--ant-color-border);
 }
 
 .msgBox {
@@ -167,7 +178,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: var(--ant-color-primary-bg);
+	color: #eee;
 }
 
 .userCard .username {
@@ -181,4 +192,18 @@
 	margin: 1rem 0.5rem;
 	border-bottom: 1px solid var(--ant-color-border);
 	padding-bottom: 0.5rem;
+}
+
+.filterSection {
+	display: flex;
+	gap: 1rem;
+	height: 56px;
+	align-items: center;
+	padding: 0 1rem;
+}
+
+.filterItemWrapper {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
 }

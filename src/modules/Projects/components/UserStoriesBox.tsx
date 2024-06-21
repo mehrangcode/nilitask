@@ -1,6 +1,6 @@
-import { AppstoreAddOutlined, CommentOutlined, UserOutlined } from "@ant-design/icons"
-import { Tooltip } from "antd"
-import { useEffect } from "react"
+import { AppstoreAddOutlined, CommentOutlined, FilterOutlined, UserOutlined } from "@ant-design/icons"
+import { Button, Input, Select, Tooltip } from "antd"
+import { useEffect, useMemo, useState } from "react"
 import ItemsContext from "../../../context/ItemsContext"
 import ProjectsContext from "../../../context/ProjectsContext"
 import UserStoriesContext from "../../../context/UserStoriesContext"
@@ -9,7 +9,13 @@ import UserStoryFormModal from "../../UserStories/components/UserStoryFormModal"
 import '../../UserStories/userStory.css'
 import UserStoryBoxPopOver from "../../UserStories/components/UserStoryBoxPopOver"
 import ItemBoxPopOver from "../../Items/components/ItemBoxPopOver"
+import FilterMode from "./FilterMode"
 function UserStoriesBox({ projectId }) {
+    const [filterValue, setFilterValue] = useState({
+        type: 1,
+        status: 1,
+        title: ""
+    })
     const userStoriesContext = UserStoriesContext()
     const projectsContext = ProjectsContext()
     const itemsContext = ItemsContext()
@@ -51,7 +57,9 @@ function UserStoriesBox({ projectId }) {
     function renderItems(story, status) {
         return story.items?.filter(t => t.status === status).map(task => {
             return <div className="taskCard" draggable="true" onDragStart={(e) => { drag(e, story.id + "-" + task.id) }}>
-                <div className="taskCardTitle">{task.title} <ItemBoxPopOver item={task} /> </div>
+                <div className="taskCardTitle" style={{
+                    borderBottom: "5px solid " + (task.type === 1 ? "cornflowerblue" : task.type === 2 ? "red" : "white")
+                }}>{task.title} <ItemBoxPopOver item={task} /> </div>
                 <div className="taskContent">{task.description}</div>
                 <div className="taskFooter">
                     {task.user ? <span><UserOutlined /> <span>{task.user.username}</span></span> : <span />}
@@ -62,11 +70,57 @@ function UserStoriesBox({ projectId }) {
             </div>
         })
     }
+    const filterMode = useMemo(() => {
+        return filterValue.status !== 1 || filterValue.type !== 1 || filterValue.title !== ""
+    }, [filterValue])
     return (
         <div className="userStoriesBox">
             <UserStoryFormModal projectId={projectId} />
             <ItemFormModal projectId={projectId} />
-            <section className="userStoriesSection">
+            <div className="filterSection">
+                <FilterOutlined />
+                <div className="filterItemWrapper">
+                    <label htmlFor="type">نوع</label>
+                    <Select id="type" style={{ width: 200 }} value={filterValue.type} onChange={(val) => {
+                        setFilterValue({
+                            ...filterValue,
+                            type: +val
+                        })
+                    }}>
+                        <Select.Option key={1} value={1}>همه موارد</Select.Option>
+                        <Select.Option key={2} value={2}>تسک</Select.Option>
+                        <Select.Option key={3} value={3}>خطا</Select.Option>
+                    </Select>
+                </div>
+                <div className="filterItemWrapper">
+                    <label htmlFor="status">وضعیت</label>
+                    <Select id="status" style={{ width: 200 }} value={filterValue.status} onChange={(val) => {
+                        setFilterValue({
+                            ...filterValue,
+                            status: +val
+                        })
+                    }}>
+                        <Select.Option key={1} value={1}>همه موارد</Select.Option>
+                        <Select.Option key={2} value={2}>تعریف شده</Select.Option>
+                        <Select.Option key={3} value={3}>در حال انجام</Select.Option>
+                        <Select.Option key={4} value={4}>در حال بررسی</Select.Option>
+                        <Select.Option key={5} value={5}>انجام شده</Select.Option>
+                    </Select>
+                </div>
+                <div className="filterItemWrapper">
+                    <label htmlFor="title">جستجو</label>
+                    <Input id="title" value={filterValue.title} onChange={(e) => {
+                        setFilterValue({
+                            ...filterValue,
+                            title: e.target.value
+                        })
+                    }} />
+                </div>
+                {filterMode ? <Button type="primary" onClick={() => {
+                    setFilterValue({type: 1, status: 1, title: ""})
+                }}>حذف فیلتر</Button> : null}
+            </div>
+            {!filterMode ? <section className="userStoriesSection">
                 <div className="storyCard storyBox header">
                     <div
                         className="storyDetails center newUserStoryBtn"
@@ -137,7 +191,7 @@ function UserStoriesBox({ projectId }) {
                         </div>
                     </div>
                 })}
-            </section>
+            </section> : <FilterMode project={projectsContext.targetItem} filterValue={filterValue} />}
         </div>
     )
 }
