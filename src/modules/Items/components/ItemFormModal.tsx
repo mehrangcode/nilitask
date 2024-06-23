@@ -2,6 +2,7 @@ import { Col, Form, FormProps, Input, Modal, Row, Select } from 'antd';
 import { useEffect } from 'react';
 import ItemsContext from '../../../context/ItemsContext';
 import ProjectsContext from '../../../context/ProjectsContext';
+import SprintsContext from '../../../context/SprintsContext';
 type FieldType = {
     title: string;
     description: string;
@@ -10,9 +11,10 @@ type FieldType = {
 };
 
 function ItemFormModal({
-    projectId
+    sprintId
 }) {
     const projectsContext = ProjectsContext()
+    const sprintsContext = SprintsContext()
     const itemsContext = ItemsContext()
     const [form] = Form.useForm()
     useEffect(() => {
@@ -41,7 +43,7 @@ function ItemFormModal({
             }
             itemsContext.selectItem(undefined)
             itemsContext.toggleFormModalView(false)
-            projectsContext.getById(projectId)
+            sprintsContext.getById(sprintId)
         } catch (error) {
 
         }
@@ -71,7 +73,7 @@ function ItemFormModal({
             >
                 <Row gutter={16}>
                     <Col xs={12}>
-                        <Form.Item  label="نوع" name={"type"}>
+                        <Form.Item label="نوع" name={"type"}>
                             <Select>
                                 <Select.Option key={1} value={1}>تسک</Select.Option>
                                 <Select.Option key={2} value={2}>خطا</Select.Option>

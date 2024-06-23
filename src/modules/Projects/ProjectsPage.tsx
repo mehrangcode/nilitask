@@ -9,10 +9,13 @@ import ProjectsContext from "../../context/ProjectsContext"
 import '../UserStories/userStory.css'
 import './project.css'
 import SprintBox from "./components/SprintBox"
+import SprintsContext from "../../context/SprintsContext"
+import SprintFomModal from "../Sprints/components/SprintFomModal"
 
 function ProjectsPage() {
   const [selectedUser, setSelectedUser] = useState(undefined)
   const projectsContext = ProjectsContext()
+  const sprintsContext = SprintsContext()
   const itemsContext = ItemsContext()
   const authContext = AuthContext()
   useEffect(() => {
@@ -30,12 +33,13 @@ function ProjectsPage() {
   }
   return (
     <div className="rootElement">
+      <SprintFomModal projectId={id} />
       <div className="pageWrapper">
         <div className="projectInfo">
           <h1 className="projectTile">{projectsContext.targetItem.title}</h1>
           <p>{projectsContext.targetItem.description}</p>
           <div className="projectUsers">
-            <div style={{padding: "1rem 1.5rem 0"}}>کاربران</div>
+            <div style={{ padding: "1rem 1.5rem 0" }}>کاربران</div>
             <div className="userSelectWrapper">
               <Select style={{ display: "block", width: "100%" }} value={selectedUser} onChange={setSelectedUser}>
                 {authContext.users.map(u => {
@@ -98,7 +102,10 @@ function ProjectsPage() {
             </div>
           </div> : null}
         </div>
-        <SprintBox projectId={id} />
+        {projectsContext.targetItem?.sprints?.length > 0 ? <SprintBox /> : <div className="noSprintPlaceHolder">
+          <div>برای شروع یک اسپرینت تعریف کنید</div>
+          <Button type="primary" onClick={() => { sprintsContext.toggleFormModalView(true) }}>ساخت اسپرینت</Button>
+        </div>}
       </div>
     </div>
   )

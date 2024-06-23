@@ -1,12 +1,12 @@
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Popover } from 'antd';
-import ProjectsContext from '../../../context/ProjectsContext';
 import ItemsContext from '../../../context/ItemsContext';
+import SprintsContext from '../../../context/SprintsContext';
 
 function ItemBoxPopOver({
     item
 }) {
-    const projectsContext = ProjectsContext()
+    const sprintsContext = SprintsContext()
     const itemsContext = ItemsContext()
     function renderContent() {
         return <div>
@@ -23,7 +23,7 @@ function ItemBoxPopOver({
                 onClick={async () => {
                     await itemsContext.deleteItem(item.id)
                     setTimeout(async () => {
-                        await projectsContext.getById(item.projectId)
+                        await sprintsContext.getById(sprintsContext.targetItem?.id)
                     }, 100);
                 }}
             ><DeleteOutlined className="actionIcon" /><span>حذف آیتم</span></p>

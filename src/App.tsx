@@ -1,9 +1,9 @@
-import { ConfigProvider, Layout, theme } from 'antd'
-import { BrowserRouter } from 'react-router-dom'
-import Container from './Container'
-import { Content } from 'antd/es/layout/layout'
+import { ConfigProvider, Layout } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 import faIR from "antd/lib/locale/fa_IR";
-import './app.css'
+import { BrowserRouter } from 'react-router-dom';
+import Container from './Container';
+import './app.css';
 function App() {
   return (
     <BrowserRouter>
@@ -12,7 +12,7 @@ function App() {
         direction='rtl'
         theme={{
           cssVar: true,
-          algorithm: theme.darkAlgorithm,
+          // algorithm: theme.darkAlgorithm,
           token: {
             fontFamily: "iranYekan",
             colorPrimary: '#6420AA',

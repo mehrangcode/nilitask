@@ -8,8 +8,8 @@
 .projectCard {
 	position: relative;
 	border: 1px solid var(--ant-color-border);
-	width: 15rem;
-	height: 6rem;
+	width: 24rem;
+	height: 10rem;
 	border-radius: .5rem;
 }
 

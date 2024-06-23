@@ -2,7 +2,6 @@ import { AppstoreAddOutlined, CommentOutlined, FilterOutlined, UserOutlined } fr
 import { Button, Input, Select, Tooltip } from "antd"
 import { useEffect, useMemo, useState } from "react"
 import ItemsContext from "../../../context/ItemsContext"
-import ProjectsContext from "../../../context/ProjectsContext"
 import UserStoriesContext from "../../../context/UserStoriesContext"
 import ItemFormModal from "../../Items/components/ItemFormModal"
 import UserStoryFormModal from "../../UserStories/components/UserStoryFormModal"
@@ -10,20 +9,21 @@ import '../../UserStories/userStory.css'
 import UserStoryBoxPopOver from "../../UserStories/components/UserStoryBoxPopOver"
 import ItemBoxPopOver from "../../Items/components/ItemBoxPopOver"
 import FilterMode from "./FilterMode"
-function UserStoriesBox({ projectId }) {
+import SprintsContext from "../../../context/SprintsContext"
+function UserStoriesBox({ sprintId }) {
     const [filterValue, setFilterValue] = useState({
         type: 1,
         status: 1,
         title: ""
     })
     const userStoriesContext = UserStoriesContext()
-    const projectsContext = ProjectsContext()
+    const sprintsContext = SprintsContext()
     const itemsContext = ItemsContext()
     useEffect(() => {
-        if (projectsContext.targetItem) {
-            userStoriesContext.setData(projectsContext.targetItem.sprints)
+        if (sprintsContext.targetItem) {
+            userStoriesContext.setData(sprintsContext.targetItem.userStories)
         }
-    }, [projectsContext.targetItem])
+    }, [sprintsContext.targetItem])
     const defaultItemValue = {
         title: "",
         description: "",
@@ -47,10 +47,9 @@ function UserStoriesBox({ projectId }) {
         if (targetStoryId.toString() === userStoyId.toString()) {
             await itemsContext.changeItemStatus(itemId, statusMood)
             setTimeout(async () => {
-                await projectsContext.getById(projectId)
+                await sprintsContext.getById(sprintId)
             }, 200);
         }
-        console.log("DROP", data, statusMood)
         // ev.target.appendChild(document.getElementById(data));
     }
 
@@ -62,7 +61,7 @@ function UserStoriesBox({ projectId }) {
                 }}>{task.title} <ItemBoxPopOver item={task} /> </div>
                 <div className="taskContent">{task.description}</div>
                 <div className="taskFooter">
-                    {task.user ? <span><UserOutlined /> <span>{task.user.username}</span></span> : <span />}
+                    {task.user ? <span style={{fontSize: 11}}><UserOutlined /> <span>{task.user.username}</span></span> : <span />}
                     <CommentOutlined onClick={() => {
                         itemsContext.getById(task.id)
                     }} />
@@ -75,8 +74,8 @@ function UserStoriesBox({ projectId }) {
     }, [filterValue])
     return (
         <div className="userStoriesBox">
-            <UserStoryFormModal projectId={projectId} />
-            <ItemFormModal projectId={projectId} />
+            <UserStoryFormModal sprintId={sprintId} />
+            <ItemFormModal sprintId={sprintId} />
             <div className="filterSection">
                 <FilterOutlined />
                 <div className="filterItemWrapper">
@@ -191,7 +190,7 @@ function UserStoriesBox({ projectId }) {
                         </div>
                     </div>
                 })}
-            </section> : <FilterMode project={projectsContext.targetItem} filterValue={filterValue} />}
+            </section> : <FilterMode project={sprintsContext.targetItem} filterValue={filterValue} />}
         </div>
     )
 }

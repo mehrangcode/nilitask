@@ -2,9 +2,9 @@ import axios from "axios"
 import { appConst } from "../utils/AppConst"
 
 const endPoint = appConst.serverUrl + "/api/sprint"
-export async function getAll(projectId) {
-    return await axios.get(`endPoint?projectId=${projectId}`)
-}
+// export async function getAll(projectId) {
+//     return await axios.get(`endPoint?projectId=${projectId}`)
+// }
 export async function getById(itemId: string) {
     return await axios.get(endPoint + `/${itemId}`)
 }

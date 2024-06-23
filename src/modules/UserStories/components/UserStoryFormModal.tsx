@@ -1,7 +1,7 @@
 import { Form, FormProps, Input, Modal } from 'antd';
 import { useEffect } from 'react';
+import SprintsContext from '../../../context/SprintsContext';
 import UserStoriesContext from '../../../context/UserStoriesContext';
-import ProjectsContext from '../../../context/ProjectsContext';
 type FieldType = {
     title: string;
     description: string;
@@ -9,10 +9,10 @@ type FieldType = {
 };
 
 function UserStoryFormModal({
-    projectId
+    sprintId
 }) {
     const userStoriesContext = UserStoriesContext()
-    const projectsContext = ProjectsContext()
+    const sprintsContext = SprintsContext()
     const [form] = Form.useForm()
     useEffect(() => {
         setTimeout(() => {
@@ -23,14 +23,14 @@ function UserStoryFormModal({
         try {
             if (userStoriesContext.targetItem?.id) {
                 await userStoriesContext.updateItem(userStoriesContext.targetItem.id, {
-                    projectId,
+                    sprintId,
                     userId: "2",
                     status: 1,
                     ...values
                 })
             } else {
                 await userStoriesContext.createItem({
-                    projectId,
+                    sprintId,
                     userId: "2",
                     status: 1,
                     ...values
@@ -38,7 +38,7 @@ function UserStoryFormModal({
             }
             userStoriesContext.selectItem(undefined)
             userStoriesContext.toggleFormModalView(false)
-            projectsContext.getById(projectId)
+            sprintsContext.getById(sprintId)
         } catch (error) {
 
         }

@@ -6,6 +6,7 @@ export interface SprintType {
     title: string
     start: string
     end: string
+    userStories?: any []
 }
 type SprintsContextType = {
     loading: boolean
@@ -13,7 +14,6 @@ type SprintsContextType = {
     targetItem: SprintType
     formModalView: boolean
     toggleFormModalView: (open: boolean) => void
-    fetchAll: (projectId) => void
     getById: (itemId: string) => void
     createItem: (payload: SprintType) => void
     updateItem: (itemId: string, payload: SprintType) => void
@@ -28,17 +28,6 @@ const SprintsContext = create<SprintsContextType>((set) => ({
     toggleFormModalView: (open: boolean) => {
         set({ formModalView: open })
     },
-    fetchAll: async (projectId) => {
-        set({ loading: true })
-        try {
-            const res = await SprintsApis.getAll(projectId)
-            set({ data: (res?.data?.data as SprintType[])?.reverse() })
-        } catch (error) {
-
-        }
-        set({ loading: false })
-    },
-
     getById: async (itemId: string) => {
         set({ loading: true })
         try {
@@ -72,7 +61,7 @@ const SprintsContext = create<SprintsContextType>((set) => ({
         try {
             await SprintsApis.deleteItem(itemId)
         } catch (error) {
-
+            throw new Error()
         }
         set({ loading: false })
     },

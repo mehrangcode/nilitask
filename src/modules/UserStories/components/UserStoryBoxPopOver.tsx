@@ -1,12 +1,12 @@
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Popover } from 'antd';
-import ProjectsContext from '../../../context/ProjectsContext';
+import SprintsContext from '../../../context/SprintsContext';
 import UserStoriesContext from '../../../context/UserStoriesContext';
 
 function UserStoryBoxPopOver({
     userStory
 }) {
-    const projectsContext = ProjectsContext()
+    const sprintsContext = SprintsContext()
     const userStoriesContext = UserStoriesContext()
     function renderContent() {
         return <div>
@@ -20,7 +20,7 @@ function UserStoryBoxPopOver({
                 onClick={async () => {
                     await userStoriesContext.deleteItem(userStory.id)
                     setTimeout(async () => {
-                        await projectsContext.getById(userStory.projectId)
+                        await sprintsContext.getById(sprintsContext.targetItem?.id)
                     }, 100);
                 }}
             ><DeleteOutlined className="actionIcon" /><span>حذف رویداد</span></p>

@@ -5,7 +5,7 @@
 
 .datePickerBox {
     position: fixed;
-    background: var(--background);
+    background: var(--ant-color-bg-base);
     border: none;
     width: 250px;
     height: 0;
@@ -17,7 +17,7 @@
 
 .datePickerBox.open {
     height: 305px;
-    border: 1px solid var(--borderColor);
+    border: 1px solid var(--ant-color-border);
     box-shadow: 0 2px 8px #666;
 }
 
@@ -49,19 +49,19 @@
 }
 
 .datePickerBody .day:hover {
-    background: var(--primaryColor);
-    color: var(--primaryFontColor);
+    background: var(--ant-color-primary);
+    color: #eee;
     border-radius: 35px;
 }
 
 .datePickerBody .day.active {
-    border: 1px solid var(--primaryColor);
-    color: var(--primaryColor);
+    border: 1px solid var(--ant-color-primary);
+    color: var(--ant-color-primary);
     border-radius: 35px;
 }
 
 .datePickerBody .day.active:hover {
-    color: var(--primaryFontColor);
+    color: #eee;
 }
 
 .datePickerItemBox.disabled,
@@ -79,11 +79,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--borderColor);
+    border-bottom: 1px solid var(--ant-color-border);
     margin-bottom: 0.5rem;
     padding: 1rem;
-    background: var(--primaryColor);
-    color: var(--primaryFontColor);
+    background: var(--ant-color-primary);
+    color: #eee;
 }
 
 .datePickerViewBody {
@@ -106,14 +106,14 @@
 }
 
 .datePickerItemBox:hover {
-    background: var(--primaryColor);
-    color: var(--primaryFontColor);
+    background: var(--ant-color-primary);
+    color: #eee;
     transform: scale(1.1);
 }
 
 .datePickerItemBox.active {
-    background: var(--primaryColor);
-    color: var(--primaryFontColor);
+    background: var(--ant-color-primary);
+    color: #eee;
 }
 
 .datePickerInput {
@@ -125,8 +125,8 @@
 }
 
 .navigationIcon {
-	background: var(--primaryFontColor);
-	color: var(--primaryColor);
+	background: #eee;
+	color: var(--ant-color-primary);
 	width: 30px;
 	display: inline-flex;
 	justify-content: center;
@@ -143,10 +143,38 @@
 
 .dateLabel span:hover {
 	cursor: pointer;
-    border-bottom: 4px solid var(--primaryFontColor);
+    border-bottom: 4px solid #eee;
 }
 
 .datePickerBox.calendarMode {
 	position: relative;
 	width: 100%;
+}
+
+.ant-input.ant-input-rtl.ant-input-outlined.datePickerInput {
+	padding: 2px 5px;
+}
+
+.ant-input {
+	box-sizing: border-box;
+	margin: 0;
+	padding: var(--ant-input-padding-block) var(--ant-input-padding-inline);
+	color: var(--ant-color-text);
+	font-size: var(--ant-input-input-font-size);
+	line-height: var(--ant-line-height);
+	list-style: none;
+	font-family: var(--ant-font-family);
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	min-width: 0;
+	border-radius: var(--ant-border-radius);
+	transition: all var(--ant-motion-duration-mid);
+}
+
+.ant-input-outlined {
+	background: var(--ant-color-bg-container);
+	border-width: var(--ant-line-width);
+	border-style: var(--ant-line-type);
+	border-color: var(--ant-color-border);
 }

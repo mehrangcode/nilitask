@@ -1,7 +1,7 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, MoreOutlined, UsergroupAddOutlined, UsergroupDeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
 import { Popover } from 'antd';
-import ProjectsContext from '../../../../context/ProjectsContext';
 import { useNavigate } from 'react-router-dom';
+import ProjectsContext from '../../../../context/ProjectsContext';
 
 function ProjectBoxPopOver({
     project
@@ -21,8 +21,6 @@ function ProjectBoxPopOver({
                 projectsContext.toggleFormModalView(true)
             }}
             ><EditOutlined className="actionIcon"/> <span>ویرایش</span></p>
-            <p className='projectMenuOption'><UsergroupAddOutlined className="actionIcon" /> <span>اضافه کردن کاربر جدید</span></p>
-            <p className='projectMenuOption'><UsergroupDeleteOutlined className="actionIcon" /> <span>حذف کاربر از پروژه</span></p>
             <p className='projectMenuOption'
             onClick={() => {
                 projectsContext.deleteItem(project.id)

@@ -6,7 +6,7 @@ export async function getAll() {
     return await axios.get(endPoint)
 }
 export async function getById(itemId: string) {
-    return await axios.get(endPoint + `/${itemId}`)
+    return await axios.get(`${endPoint}/${itemId}`)
 }
 export async function createItem(payload) {
     return await axios.post(endPoint, payload)

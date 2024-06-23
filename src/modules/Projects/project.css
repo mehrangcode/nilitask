@@ -1,3 +1,8 @@
+.projectTitle a {
+	color: var(--ant-color-text);
+	font-size: large;
+}
+
 .projectInfo {
 	width: 20rem;
 	border-left: 1px solid var(--ant-color-border);
@@ -6,7 +11,7 @@
 }
 
 .userStoriesBox {
-	width: calc(100% - 22rem);
+	width: 100%;
 	height: calc(100vh - 60px);
 }
 
@@ -100,6 +105,7 @@
 	width: 100%;
 	flex-wrap: wrap;
 }
+
 .filterMode .taskCard {
 	width: 230px;
 }
@@ -206,4 +212,67 @@
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
+}
+
+.noSprintPlaceHolder {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.targetSprint {
+	width: calc(100% - 22rem);
+}
+
+.sprintListViewBox {
+	display: flex;
+	gap: 1rem;
+	overflow: auto;
+	height: 120px;
+	padding: 1rem;
+	border-bottom: 1px solid var(--ant-color-border);
+}
+
+.sprintCard {
+	border: 1px solid var(--ant-color-border);
+	border-radius: .5rem;
+	padding: .5rem;
+	width: 180px;
+	flex-shrink: 0;
+	cursor: pointer;
+	position: relative;
+}
+
+
+.sprintCard.newSprintButton {
+	position: sticky;
+	right: 0;
+	background: var(--ant-color-primary);
+	color: #ccc;
+	z-index: 2;
+}
+
+.sprintCard.active,
+.sprintCard:hover {
+	border: 3px solid var(--ant-color-primary);
+	color: var(--ant-color-primary);
+}
+
+.sprintCard.newSprintButton:hover {
+	position: sticky;
+	right: 0;
+	background: var(--ant-color-bg-base);
+	color: var(--ant-color-primary);
+	z-index: 2;
+}
+
+.anticon.anticon-delete.deleteSprintIcon {
+	position: absolute;
+	bottom: .5rem;
+	left: .5rem;
+	color: red;
+	cursor: pointer;
 }

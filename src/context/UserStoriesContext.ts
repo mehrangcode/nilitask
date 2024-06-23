@@ -3,7 +3,7 @@ import * as UserStoriesApis from '../apis/userStoriesApis'
 import { ItemType } from './ItemsContext';
 export interface UserStoryType {
     id?: string
-    projectId: string
+    sprintId: string
     userId: string
     title: string
     items?: ItemType[]
