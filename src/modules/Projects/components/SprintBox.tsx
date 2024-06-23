@@ -5,6 +5,7 @@ import SprintsContext from "../../../context/SprintsContext"
 import UserStoriesBox from "../../Sprints/components/UserStoriesBox"
 import UserStoriesContext from "../../../context/UserStoriesContext"
 import { DeleteOutlined } from "@ant-design/icons"
+import { Tabs } from "antd"
 
 function SprintBox() {
   const projectsContext = ProjectsContext()
@@ -12,11 +13,16 @@ function SprintBox() {
   const userStoriesContext = UserStoriesContext()
   const today = DoDate.now()
   useEffect(() => {
-    const payload = projectsContext.targetItem?.sprints?.find(x => {
-      return new Date(x.start) <= today.getDate() && new Date(x.end) >= today.getDate()
-    })
-    if (payload) {
-      sprintsContext.getById(payload.id)
+    if (projectsContext.targetItem) {
+      let currentSprint = projectsContext.targetItem?.sprints?.find(x => {
+        return new Date(x.start) <= today.getDate() && new Date(x.end) >= today.getDate()
+      })
+      if (!currentSprint) {
+        currentSprint = projectsContext.targetItem?.sprints[0]
+      }
+      if (currentSprint) {
+        sprintsContext.getById(currentSprint.id)
+      }
     }
   }, [projectsContext.targetItem])
   useEffect(() => {
@@ -26,7 +32,7 @@ function SprintBox() {
     <div className="targetSprint">
       <div className="sprintListViewBox">
         <div className="sprintCard newSprintButton" onClick={() => {
-          sprintsContext.selectItem(undefined)
+          sprintsContext.selectEditableItem(undefined)
           sprintsContext.toggleFormModalView(true)
         }}>تعریف اسپرینت جدید</div>
         {projectsContext.targetItem?.sprints?.map(x => <div className={sprintsContext.targetItem?.id === x.id ? "sprintCard active" : "sprintCard"}
@@ -35,20 +41,40 @@ function SprintBox() {
           }}
         >
           <strong>{x.title}</strong>
-          <DeleteOutlined className="deleteSprintIcon" onClick={async () => {
+          <DeleteOutlined className="deleteSprintIcon" onClick={async (e) => {
+            e.stopPropagation()
             try {
               sprintsContext.deleteItem(x.id)
-              projectsContext.getById(projectsContext.targetItem?.id)
+              setTimeout(() => {
+                projectsContext.getById(projectsContext.targetItem?.id)
+              }, 200);
             } catch (error) {
 
             }
           }} />
+          <div className="sprintDates">
+            <span>{DoDate.parse(x.start).formatJalali("YYYY/MM/DD")}</span>
+            <span>{DoDate.parse(x.end).formatJalali("YYYY/MM/DD")}</span>
+          </div>
         </div>)}
       </div>
-      <div className="sprintView">
-        <h1 className="sprintTitle">{sprintsContext.targetItem?.title || null}</h1>
-      </div>
-      {sprintsContext.targetItem ? <UserStoriesBox sprintId={sprintsContext.targetItem?.id} /> : null}
+      {sprintsContext.targetItem ?
+        <Tabs
+          centered
+          items={[
+            {
+              key: "data",
+              label: "اطلاعات",
+              children: <UserStoriesBox sprintId={sprintsContext.targetItem?.id} />,
+            },
+            {
+              key: "report",
+              label: "گزارش اسپرینت",
+              children: <UserStoriesBox sprintId={sprintsContext.targetItem?.id} />,
+            },
+          ]}
+        />
+        : null}
     </div>
   )
 }

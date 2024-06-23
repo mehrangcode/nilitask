@@ -34,3 +34,10 @@ h1, p {
 .center {
     text-align: center;
 }
+
+
+.container {
+	background: rgb(255, 255, 255);
+	background-repeat: no-repeat;
+	background-size: 200px;
+}

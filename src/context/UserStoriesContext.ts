@@ -41,7 +41,7 @@ const UserStoriesContext = create<UserStoriesContextType>((set, get) => ({
         set({ formModalView: open })
     },
     setData: (data) => {
-        set({ data: (data || []).reverse() })
+        set({ data: (data || []) })
     },
     getById: async (itemId: string) => {
         set({ loading: true })

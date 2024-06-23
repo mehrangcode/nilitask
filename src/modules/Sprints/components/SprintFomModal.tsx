@@ -19,12 +19,12 @@ function SprintFomModal({ projectId }) {
         setTimeout(() => {
             form.resetFields()
         }, 100);
-    }, [sprintsContext.formModalView, sprintsContext.targetItem])
+    }, [sprintsContext.formModalView, sprintsContext.editableItem])
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         try {
-            if (sprintsContext.targetItem?.id) {
-                await sprintsContext.updateItem(sprintsContext.targetItem.id, {
+            if (sprintsContext.editableItem?.id) {
+                await sprintsContext.updateItem(sprintsContext.editableItem.id, {
                     ...values,
                     projectId
                 })
@@ -34,7 +34,7 @@ function SprintFomModal({ projectId }) {
                     projectId
                 })
             }
-            // sprintsContext.selectItem(undefined)
+            sprintsContext.selectEditableItem(undefined)
             sprintsContext.toggleFormModalView(false)
             projectsContext.getById(projectId)
         } catch (error) {
@@ -46,7 +46,7 @@ function SprintFomModal({ projectId }) {
             open={sprintsContext.formModalView}
             title="مشخصات اسپرینت"
             onCancel={() => {
-                // sprintsContext.selectItem(undefined)
+                sprintsContext.selectEditableItem(undefined)
                 sprintsContext.toggleFormModalView(false)
             }}
             onOk={async () => {

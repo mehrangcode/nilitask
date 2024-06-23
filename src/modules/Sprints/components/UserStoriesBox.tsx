@@ -10,12 +10,24 @@ import UserStoryBoxPopOver from "../../UserStories/components/UserStoryBoxPopOve
 import ItemBoxPopOver from "../../Items/components/ItemBoxPopOver"
 import FilterMode from "./FilterMode"
 import SprintsContext from "../../../context/SprintsContext"
+import STORY_BG1 from '../../../assets/images/storyBG1.png'
+import STORY_BG2 from '../../../assets/images/storyBG2.png'
+import STORY_BG3 from '../../../assets/images/storyBG3.png'
+import STORY_BG4 from '../../../assets/images/storyBG4.png'
 function UserStoriesBox({ sprintId }) {
     const [filterValue, setFilterValue] = useState({
         type: 1,
         status: 1,
         title: ""
     })
+    const storyBGs = useMemo(() => {
+        return [
+            STORY_BG1,
+            STORY_BG2,
+            STORY_BG3,
+            STORY_BG4,
+        ]
+    }, [])
     const userStoriesContext = UserStoriesContext()
     const sprintsContext = SprintsContext()
     const itemsContext = ItemsContext()
@@ -134,13 +146,14 @@ function UserStoriesBox({ sprintId }) {
                     <div className="reviewTasks center">در حال بررسی</div>
                     <div className="doneTask center">انجام شده</div>
                 </div>
-                {userStoriesContext.data.map(story => {
+                {userStoriesContext.data.map((story, index) => {
                     return <div className="storyCard content">
-                        <div className="storyDetails">
+                        <div className="storyDetails storyDetilBox">
                             <UserStoryBoxPopOver userStory={story} />
                             <div className="storyCardTitle">{story.title}</div>
                             {/* <div className="storyCardTitle"><Link to={"/userStory/" + story.id}>{story.title}</Link></div> */}
                             <div className="taskContent">{story.description}</div>
+                            <img src={storyBGs[index % storyBGs.length]} alt="" className="storyBG" />
                         </div>
                         <div className="pendingTasks" onDragOver={(e) => e.preventDefault()} onDrop={(e) => { drop(e, story.id, 1) }}>
                             {renderItems(story, 1)}

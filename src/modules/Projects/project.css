@@ -12,8 +12,8 @@
 
 .userStoriesBox {
 	width: 100%;
-	height: calc(100vh - 60px);
-}
+	height: calc(100vh - 231px);
+} 
 
 .projectTile {
 	margin: 0 1rem;
@@ -22,7 +22,7 @@
 .userStoriesSection {
 	margin: 1rem;
 	width: 100%;
-	height: calc(100% - 60px);
+	height: calc(100% - 90px);
 	overflow: auto;
 }
 
@@ -271,8 +271,23 @@
 
 .anticon.anticon-delete.deleteSprintIcon {
 	position: absolute;
-	bottom: .5rem;
+	top: 1rem;
 	left: .5rem;
-	color: red;
 	cursor: pointer;
+}
+
+.sprintDates {
+	font-size: 11px;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: calc(100% - 1rem);
+	bottom: 0.5rem;
+}
+
+.storyBG {
+	height: 120px;
+	position: sticky;
+	top: 80px;
+	max-width: 100%;
 }

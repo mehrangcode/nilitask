@@ -12,6 +12,7 @@ type SprintsContextType = {
     loading: boolean
     data: SprintType[]
     targetItem: SprintType
+    editableItem: SprintType
     formModalView: boolean
     toggleFormModalView: (open: boolean) => void
     getById: (itemId: string) => void
@@ -19,11 +20,13 @@ type SprintsContextType = {
     updateItem: (itemId: string, payload: SprintType) => void
     deleteItem: (itemId: string) => void
     selectItem: (item: SprintType) => void
+    selectEditableItem: (item: SprintType) => void
 }
 const SprintsContext = create<SprintsContextType>((set) => ({
     loading: false,
     data: [],
     targetItem: undefined,
+    editableItem: undefined,
     formModalView: false,
     toggleFormModalView: (open: boolean) => {
         set({ formModalView: open })
@@ -67,6 +70,9 @@ const SprintsContext = create<SprintsContextType>((set) => ({
     },
     selectItem: (item: SprintType) => {
         set({ targetItem: item })
+    },
+    selectEditableItem: (item: SprintType) => {
+        set({ editableItem: item })
     },
 }));
 

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import AuthPage from './modules/Auth/AuthPage';
 import axios from 'axios';
 import ProjectsPage from './modules/Projects/ProjectsPage';
-
+import CONTAINER_BG from './assets/images/spaceship.png'
 function Container() {
   const [isAuth, setIsAuth] = useState(false)
   axios.interceptors.response.use(
@@ -53,7 +53,7 @@ function Container() {
     </div>
   }
   return (
-    <div className='container' style={{ background: colorBgContainer }}>
+    <div className='container' style={{ backgroundColor: colorBgContainer, backgroundImage: `url(${CONTAINER_BG})` }}>
       <Navbar />
       <Routes>
         <Route path='/projects/:id' element={<ProjectsPage />} />
