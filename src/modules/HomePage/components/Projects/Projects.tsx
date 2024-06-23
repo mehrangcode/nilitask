@@ -36,8 +36,8 @@ function Projects() {
                         <ProjectBoxPopOver project={project} />
                         <img src={projectBGs[Math.floor(index % projectBGs.length)]} alt="project" className="projectBg" />
                         <div className="projctCardInfo">
-                            {project.users?.length > 0 && <span><span className="payloadAmount">{project.users?.length}</span><UserOutlined /></span>}
-                            {project.sprints?.length > 0 && <span><span className="payloadAmount">{project.sprints?.length}</span><BookOutlined /></span>}
+                             <span><span className="payloadAmount">{project.users?.length}</span><UserOutlined /></span>
+                            <span><span className="payloadAmount">{project.sprints?.length}</span><BookOutlined /></span>
                         </div>
                     </div>
                 })}

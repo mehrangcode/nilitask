@@ -1,0 +1,96 @@
+.reviewSection {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.reviewCard {
+	border: 1px solid var(--ant-color-border);
+	width: 10rem;
+	text-align: center;
+	border-radius: 0.5rem;
+	padding: 2rem;
+}
+
+.charts {
+	margin: 1rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.itemStatus {
+	height: 18rem;
+	width: 12rem;
+	text-align: center;
+	border: 1px solid var(--ant-color-border);
+	padding: 1rem;
+	border-radius: 0.5rem;
+}
+
+.chartWrapper {
+	height: 10rem;
+	width: 10rem;
+}
+
+.hintMap {
+	font-size: 11px;
+}
+
+.hintMap>div {
+	display: flex;
+	align-items: center;
+}
+
+.hintColor {
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.hintMap>div {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem 0;
+	justify-content: space-between;
+	height: 2rem;
+}
+
+
+.hintMap>div>span {
+	height: 2rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+ }
+
+ .assignTasks {
+	border: 1px solid var(--ant-color-border);
+	padding: 1rem;
+	width: 19rem;
+	border-radius: 0.5rem;
+}
+
+.userRow {
+	display: flex;
+	gap: 0.5rem;
+	border-bottom: 1px solid var(--ant-color-border);
+	padding: 0.5rem;
+	direction: ltr;
+}
+
+.userRow span {
+	width: 50px;
+}
+
+.taskLine {
+	background: #0088fe;
+	color: #fff;
+	border-radius: 0.25rem;
+	padding: 0 .25rem;
+}
+
+.assignTaskTitle {
+	text-align: center;
+}

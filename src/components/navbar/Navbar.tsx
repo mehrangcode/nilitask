@@ -6,7 +6,7 @@ function Navbar() {
         <header className="appHeader">
             <div className="appName">
                 <Link to="/"><img src={LOGO} alt="NiliTask" className="logo" /></Link>
-                <h1>NILI TASK</h1>
+                <h1>مدیریت تسک</h1>
             </div>
         </header>
     )

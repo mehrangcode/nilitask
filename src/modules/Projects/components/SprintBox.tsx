@@ -6,6 +6,7 @@ import UserStoriesBox from "../../Sprints/components/UserStoriesBox"
 import UserStoriesContext from "../../../context/UserStoriesContext"
 import { DeleteOutlined } from "@ant-design/icons"
 import { Tabs } from "antd"
+import SprintReport from "../../Sprints/components/SprintReport"
 
 function SprintBox() {
   const projectsContext = ProjectsContext()
@@ -70,7 +71,7 @@ function SprintBox() {
             {
               key: "report",
               label: "گزارش اسپرینت",
-              children: <UserStoriesBox sprintId={sprintsContext.targetItem?.id} />,
+              children: <SprintReport />,
             },
           ]}
         />
